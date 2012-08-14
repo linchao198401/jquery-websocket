@@ -34,9 +34,9 @@ $.extend({
 		ws._settings = $.extend($.websocketSettings, s);
 		ws._send = ws.send;
 		ws.send = function(type, data) {
-			var m = {type: type};
+			var m = {code: type};
 			m = $.extend(true, m, $.extend(true, {}, $.websocketSettings.options, m));
-			if (data) m['data'] = data;
+			if (data) m['body'] = data;
 			return this._send($.toJSON(m));
 		}
 		$(window).unload(function(){ ws.close(); ws = null });
